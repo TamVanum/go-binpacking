@@ -19,23 +19,14 @@ func main() {
 		boxRepository.Add(*domain.NewSmallBox())
 	}
 
-	for _, b := range boxRepository.Get() {
-		fmt.Printf("Box ID: %d | Volume: %.2f | Weight: %.2f\n", b.ID, b.Volume, b.Weight)
+	firstContainer := domain.Container{ID: 1, MaxWeight: 100, MaxVolume: 100}
+	containerRepository := repository.NewContainerInMemoryRepository()
+
+	for _, c := range usecase.GreedyPack(boxRepository.Get(), firstContainer) {
+		containerRepository.Add(c)
 	}
 
-	fmt.Println("-")
-	fmt.Println("-")
-	fmt.Println("-")
-
-	firstContainer := domain.Container{ID: 1, MaxWeight: 100, MaxVolume: 100}
-
-	containers := usecase.GreedyPack(boxRepository.Get(), firstContainer)
-
-	for _, c := range containers {
-		fmt.Printf("Container %d: -- WeightUesed %f | VolumeUsed %f | Boxes %d ", c.ID, c.UsedWeight, c.UsedVolume, len(c.Boxes))
-		for _, b := range c.Boxes {
-			fmt.Printf("Box %d", b.ID)
-		}
-		fmt.Println()
+	for _, c := range containerRepository.Get() {
+		fmt.Printf("ID %d | Leng %d | MaxVol %f | MaxWeight %f | UsedVol %f | UsedWeight %f \n", c.ID, len(c.Boxes), c.MaxVolume, c.MaxWeight, c.UsedVolume, c.UsedWeight)
 	}
 }
