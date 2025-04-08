@@ -1,24 +1,21 @@
 package domain
 
-func NewBigBox(id int) *Box {
+func NewBigBox() *Box {
 	return &Box{
-		ID:     id,
 		Volume: 30,
 		Weight: 25,
 	}
 }
 
-func NewMediumBox(id int) *Box {
+func NewMediumBox() *Box {
 	return &Box{
-		ID:     id,
 		Volume: 20,
 		Weight: 15,
 	}
 }
 
-func NewSmallBox(id int) *Box {
+func NewSmallBox() *Box {
 	return &Box{
-		ID:     id,
 		Volume: 10,
 		Weight: 5,
 	}
