@@ -10,6 +10,7 @@ func GreedyPack(boxes []domain.Box, limit domain.Container) []domain.Container {
 	for _, box := range boxes {
 		if !assingToFirstFit(containers, box) {
 			containers = append(containers, newContainerWithBox(nextID, box, limit))
+			nextID++
 		}
 	}
 	return containers

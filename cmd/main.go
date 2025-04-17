@@ -12,11 +12,14 @@ func main() {
 
 	boxRepository := repository.NewInMemoryBoxRepository()
 
-	for range 5 {
-		boxRepository.Add(*domain.NewBigBox())
-		boxRepository.Add(*domain.NewMediumBox())
-		boxRepository.Add(*domain.NewMediumBox())
-		boxRepository.Add(*domain.NewSmallBox())
+	// for range 5 {
+	// 	boxRepository.Add(*domain.NewBigBox())
+	// 	boxRepository.Add(*domain.NewMediumBox())
+	// 	boxRepository.Add(*domain.NewMediumBox())
+	// 	boxRepository.Add(*domain.NewSmallBox())
+	// }
+	for range 20 {
+		boxRepository.Add(*domain.NewRandomDimensionBox())
 	}
 
 	firstContainer := domain.Container{ID: 1, MaxWeight: 100, MaxVolume: 100}
